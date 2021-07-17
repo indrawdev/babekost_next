@@ -1,7 +1,10 @@
+import Layout from '@/components/Layout'
+import styles from '@/styles/Cari.module.css'
+
 export default function CariPage() {
 	return (
-		<div>
-			
-		</div>
+		<Layout title='Cari'>
+
+		</Layout>
 	)
 }

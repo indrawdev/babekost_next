@@ -1,11 +1,12 @@
-import Layout from "@/components/layout"
+import Layout from '@/components/Layout'
 import { API_URL } from '@/config/index'
+import styles from '@/styles/Villa.module.css'
 
 export default function VillaDetail() {
 	return (
-		<Layout>
+		<Layout title='Villa Detail'>
 			<div>
-
+				<h1>Villa Detail</h1>
 			</div>
 		</Layout>
 	)
@@ -18,4 +19,8 @@ export async function getStaticPaths() {
 	const paths = events.map((evt) => ({
 		params: { slug: evt.slug }
 	}))
+}
+
+export async function getStaticProps() {
+
 }
