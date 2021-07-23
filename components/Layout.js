@@ -26,3 +26,9 @@ export default function Layout({ title, keywords, description, children }) {
 		</div>
 	)
 }
+
+Layout.defaultProps = {
+	title: 'BabeKost | Info Juragan Kost',
+	description: 'Info juragan kost',
+	keywords: 'kost, apartemen, villa, hunian',
+}
