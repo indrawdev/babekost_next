@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
 
 	const router = useRouter()
 
+	useEffect(() => checkUserLoggedIn(), [])
+
 	// Register user
 	const register = async (user) => {
 		const res = await fetch(`${NEXT_URL}/api/register`, {
@@ -17,17 +19,16 @@ export const AuthProvider = ({ children }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				identifier,
-				password
-			})
+			body: JSON.stringify(user)
 		})
 
 		const data = await res.json()
 		if (res.ok) {
-
+			setUser(data.user)
+			router.push('/user/dashboard')
 		} else {
-
+			setError(data.message)
+			setError(null)
 		}
 	}
 
@@ -59,12 +60,26 @@ export const AuthProvider = ({ children }) => {
 
 	// Logout user
 	const logout = async () => {
-		console.log('logout')
+		const res = await fetch(`${NEXT_URL}/api/logout`, {
+			method: 'POST',
+		})
+
+		if (res.ok) {
+			setUser(null)
+			router.push('/')
+		}
 	}
 
 	// Check if user is logged in
 	const checkUserLoggedIn = async (user) => {
-		console.log(user)
+		const res = await fetch(`${NEXT_URL}/api/user`)
+		const data = await res.json()
+
+		if (res.ok) {
+			setUser(data.user)
+		} else {
+			setUser(null)
+		}
 	}
 
 	return (
@@ -72,7 +87,6 @@ export const AuthProvider = ({ children }) => {
 			{children}
 		</AuthContext.Provider>
 	)
-
 }
 
 export default AuthContext

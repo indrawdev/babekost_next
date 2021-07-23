@@ -2,7 +2,8 @@ import { useContext, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import AuthContext from '@/context/AuthContext'
-import styles from '@/styles/Login.module.css'
+import { FaUser } from 'react-icons/fa'
+import styles from '@/styles/AuthForm.module.css'
 
 export default function LoginPage() {
 
@@ -20,9 +21,9 @@ export default function LoginPage() {
 
 	return (
 		<Layout title='Login'>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<h1>Login</h1>
+			<div className={styles.auth}>
+				<h1><FaUser /> Log In</h1>
+				<form onSubmit={handleSubmit}>
 					<div>
 						<label htmlFor='email'>Email</label>
 						<input
@@ -44,10 +45,13 @@ export default function LoginPage() {
 						/>
 					</div>
 					<div>
-						<input type='submit' name='Submit' />
+						<input type='submit' name='Submit' className='btn' />
 					</div>
-				</div>
-			</form>
+				</form>
+				<p>
+					Don't have an account? <Link href='/auth/register'>Register</Link>
+				</p>
+			</div>
 		</Layout>
 	)
 }

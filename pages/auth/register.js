@@ -1,24 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
-import styles from '@/styles/Register.module.css'
+import { FaUser } from 'react-icons/fa'
+import AuthContext from '@/context/AuthContext'
+import styles from '@/styles/AuthForm.module.css'
 
 export default function RegisterPage() {
 
 	const [name, setName] = useState('')
 	const [phone, setPhone] = useState('')
 	const [email, setEmail] = useState('')
+
 	const [password, setPassword] = useState('')
 	const [passwordConfirm, setPasswordConfirm] = useState('')
 
+	const { register, error } = useContext(AuthContext)
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		console.log({ email, password, passwordConfirm })
+
+		if (password !== passwordConfirm) {
+			// toast.error('Passwords do not match!')
+			return
+		}
+
+		register({ name, email, password })
 	}
 
 	return (
 		<Layout title='Register'>
-			<div>
+			<div className={styles.auth}>
 				<h1>Register</h1>
 				<form onSubmit={handleSubmit}>
 					<div>
@@ -72,7 +83,7 @@ export default function RegisterPage() {
 						/>
 					</div>
 					<div>
-						<input type='submit' name='Submit' />
+						<input type='submit' name='Submit' className='btn' />
 					</div>
 				</form>
 			</div>
