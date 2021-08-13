@@ -3,15 +3,15 @@ import { API_URL } from '@/config/index'
 
 export default async (req, res) => {
 	if (req.method === 'POST') {
-		const { identifier, password } = req.body
+		const { email, password } = req.body
 
-		const res = await fetch(`${API_URL}/auth/local`, {
+		const res = await fetch(`${API_URL}/api/auth/register`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				identifier,
+				email,
 				password
 			})
 		})

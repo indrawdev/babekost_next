@@ -10,7 +10,7 @@ export default function Search() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		router.push(`/events/search?term=${term}`)
+		router.push(`/search?term=${term}`)
 		setTerm('')
 	}
 
@@ -21,7 +21,7 @@ export default function Search() {
 					type='text'
 					value={term}
 					onChange={(e) => setTerm(e.target.value)}
-					placeholder='Search Events'
+					placeholder='Search'
 				/>
 			</form>
 		</div>

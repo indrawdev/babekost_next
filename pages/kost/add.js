@@ -7,7 +7,9 @@ import { API_URL } from '@/config/index'
 import { toast } from 'react-toastify'
 import styles from '@/styles/Form.module.css'
 
-export default function AddHunianPage({ token }) {
+export default function AddKostPage({ token }) {
+
+	console.log(token)
 
 	const [values, setValues] = useState({
 		name: '',
@@ -24,7 +26,7 @@ export default function AddHunianPage({ token }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		const res = await fetch(`${API_URL}/hunian`, {
+		const res = await fetch(`${API_URL}/kost`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -41,7 +43,7 @@ export default function AddHunianPage({ token }) {
 			toast.error('Something Went Wrong')
 		} else {
 			const post = await res.json()
-			router.push(`/hunian/${post.slug}`)
+			router.push(`/kost/${post.slug}`)
 		}
 	}
 
@@ -51,9 +53,9 @@ export default function AddHunianPage({ token }) {
 	}
 
 	return (
-		<Layout title='Add New Hunian'>
-			<Link href='/hunian'>Go Back</Link>
-			<h1>Add Hunian</h1>
+		<Layout title='Add New Kost'>
+			<Link href='/kost'>Go Back</Link>
+			<h1>Add Kost</h1>
 			<form onSubmit={handleSubmit} className={styles.form}>
 				<div className={styles.grid}>
 					<div>
@@ -127,7 +129,7 @@ export default function AddHunianPage({ token }) {
 						onChange={handleInputChange}
 					></textarea>
 				</div>
-				<input type='submit' value='Add Hunian' className='btn' />
+				<input type='submit' value='Add Kost' className='btn' />
 			</form>
 		</Layout>
 	)

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { FaUser } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 import AuthContext from '@/context/AuthContext'
 import styles from '@/styles/AuthForm.module.css'
 
@@ -20,7 +21,7 @@ export default function RegisterPage() {
 		e.preventDefault()
 
 		if (password !== passwordConfirm) {
-			// toast.error('Passwords do not match!')
+			toast.error('Passwords do not match!')
 			return
 		}
 
@@ -30,7 +31,7 @@ export default function RegisterPage() {
 	return (
 		<Layout title='Register'>
 			<div className={styles.auth}>
-				<h1>Register</h1>
+				<h1><FaUser /> Register</h1>
 				<form onSubmit={handleSubmit}>
 					<div>
 						<label htmlFor='name'>Name</label>
@@ -86,6 +87,9 @@ export default function RegisterPage() {
 						<input type='submit' name='Submit' className='btn' />
 					</div>
 				</form>
+				<p>
+					Already have an account? <Link href='/auth/login'>Login</Link>
+				</p>
 			</div>
 		</Layout>
 	)

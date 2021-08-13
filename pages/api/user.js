@@ -10,7 +10,7 @@ export default async (req, res) => {
 
 		const { token } = cookie.parse(req.headers.cookie)
 
-		const res = await fetch(`${API_URL}/users/me`, {
+		const res = await fetch(`${API_URL}/user/me`, {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${token}`,

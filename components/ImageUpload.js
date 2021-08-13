@@ -11,7 +11,7 @@ export default function ImageUpload({ evtId, imageUploaded }) {
 		const formData = new FormData()
 
 		formData.append('files', image)
-		formData.append('ref', 'events')
+		formData.append('ref', 'posts')
 		formData.append('refId', evtId)
 		formData.append('field', 'image')
 
@@ -27,11 +27,11 @@ export default function ImageUpload({ evtId, imageUploaded }) {
 	}
 
 	const handleFileChange = (e) => {
-
+		setImage(e.target.files[0])
 	}
 
 	return (
-		<div>
+		<div className={styles.form}>
 			<h1>Upload</h1>
 			<form onSubmit={handleSubmit}>
 				<div>
