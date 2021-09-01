@@ -18,9 +18,7 @@ export default function Layout({ title, keywords, description, children }) {
 				<meta name='googlebot' content='index' />
 			</Head>
 			<Header />
-			<div className={styles.container}>
-				{children}
-			</div>
+			{children}
 			<ToastContainer />
 			<Footer />
 		</div>
